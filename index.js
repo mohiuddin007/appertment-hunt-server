@@ -48,9 +48,9 @@ client.connect(err => {
       apartmentsCollection.find({})
       .toArray((err, documents) => {
         res.send(documents);
-        console.log(documents);
       })
      })
+
 
      //Post booking data
       app.post('/addBooking', (req, res) => {
@@ -68,6 +68,14 @@ client.connect(err => {
           res.send(documents);
         })
       })
+
+      // Get specific user's booking data 
+     app.post('/specificUserBooking', (req, res) => {
+      bookingsCollection.find({email: req.body.email})
+      .toArray((err, documents) => {
+        res.send(documents);
+      })
+    })
 
 
 });
